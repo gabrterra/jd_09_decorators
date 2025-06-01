@@ -1,0 +1,198 @@
+2025-06-01T12:54:56.874829-0300 INFO chamando função pipeline com argumentos ('data', ['parquet', 'csv']) e {}
+2025-06-01T12:54:56.875347-0300 INFO chamando função extrair_dados com argumentos ('data',) e {}
+2025-06-01T12:54:56.913657-0300 INFO função extrair_dados retornou             Produto    Categoria  Quantidade  Venda        Data
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17
+2025-06-01T12:54:56.926954-0300 INFO chamando função calcular_kpi_total_vendas com argumentos (            Produto    Categoria  Quantidade  Venda        Data
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17,) e {}
+2025-06-01T12:54:56.940278-0300 INFO função calcular_kpi_total_vendas retornou             Produto    Categoria  Quantidade  Venda        Data  Total
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15   4500
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15    300
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15    500
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16  10500
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16    300
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16    300
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17   3000
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17    420
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17    200
+2025-06-01T12:54:56.953047-0300 INFO chamando função salvar_dados com argumentos (            Produto    Categoria  Quantidade  Venda        Data  Total
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15   4500
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15    300
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15    500
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16  10500
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16    300
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16    300
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17   3000
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17    420
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17    200, ['parquet', 'csv']) e {}
+2025-06-01T12:54:56.957392-0300 ERROR função salvar_dados falhou
+Traceback (most recent call last):
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\pipeline.py", line 6, in <module>
+    pipeline(pasta, formato)
+    │        │      └ ['parquet', 'csv']
+    │        └ 'data'
+    └ <function pipeline at 0x000001A93ECAAF20>
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\utils_log.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             │     │       └ {}
+             │     └ ('data', ['parquet', 'csv'])
+             └ <function pipeline at 0x000001A93ECAAE80>
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\etl.py", line 46, in pipeline
+    salvar_dados(df, formato_arquivo)
+    │            │   └ ['parquet', 'csv']
+    │            └             Produto    Categoria  Quantidade  Venda        Data  Total
+    │              0    Notebook Gamer  Eletrônicos           3   1500  2...
+    └ <function salvar_dados at 0x000001A93ECAADE0>
+
+> File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\utils_log.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             │     │       └ {}
+             │     └ (            Produto    Categoria  Quantidade  Venda        Data  Total
+             │       0    Notebook Gamer  Eletrônicos           3   1500  ...
+             └ <function salvar_dados at 0x000001A93ECAAC00>
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\etl.py", line 30, in salvar_dados
+    df.to_parquet('df.parquet', index=False)
+    │  └ <function DataFrame.to_parquet at 0x000001A93E82DB20>
+    └             Produto    Categoria  Quantidade  Venda        Data  Total
+      0    Notebook Gamer  Eletrônicos           3   1500  2...
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\.venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'index': False}
+           │     └ (            Produto    Categoria  Quantidade  Venda        Data  Total
+           │       0    Notebook Gamer  Eletrônicos           3   1500  ...
+           └ <function DataFrame.to_parquet at 0x000001A93E82DA80>
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\.venv\Lib\site-packages\pandas\core\frame.py", line 3113, in to_parquet
+    return to_parquet(
+           └ <function to_parquet at 0x000001A93E948C20>
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\.venv\Lib\site-packages\pandas\io\parquet.py", line 476, in to_parquet
+    impl = get_engine(engine)
+           │          └ 'auto'
+           └ <function get_engine at 0x000001A93E948400>
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\.venv\Lib\site-packages\pandas\io\parquet.py", line 67, in get_engine
+    raise ImportError(
+
+ImportError: Unable to find a usable engine; tried using: 'pyarrow', 'fastparquet'.
+A suitable version of pyarrow or fastparquet is required for parquet support.
+Trying to import the above resulted in these errors:
+ - Missing optional dependency 'pyarrow'. pyarrow is required for parquet support. Use pip or conda to install pyarrow.
+ - Missing optional dependency 'fastparquet'. fastparquet is required for parquet support. Use pip or conda to install fastparquet.
+2025-06-01T12:54:57.061808-0300 ERROR função pipeline falhou
+Traceback (most recent call last):
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\pipeline.py", line 6, in <module>
+    pipeline(pasta, formato)
+    │        │      └ ['parquet', 'csv']
+    │        └ 'data'
+    └ <function pipeline at 0x000001A93ECAAF20>
+
+> File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\utils_log.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             │     │       └ {}
+             │     └ ('data', ['parquet', 'csv'])
+             └ <function pipeline at 0x000001A93ECAAE80>
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\etl.py", line 46, in pipeline
+    salvar_dados(df, formato_arquivo)
+    │            │   └ ['parquet', 'csv']
+    │            └             Produto    Categoria  Quantidade  Venda        Data  Total
+    │              0    Notebook Gamer  Eletrônicos           3   1500  2...
+    └ <function salvar_dados at 0x000001A93ECAADE0>
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\utils_log.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             │     │       └ {}
+             │     └ (            Produto    Categoria  Quantidade  Venda        Data  Total
+             │       0    Notebook Gamer  Eletrônicos           3   1500  ...
+             └ <function salvar_dados at 0x000001A93ECAAC00>
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\etl.py", line 30, in salvar_dados
+    df.to_parquet('df.parquet', index=False)
+    │  └ <function DataFrame.to_parquet at 0x000001A93E82DB20>
+    └             Produto    Categoria  Quantidade  Venda        Data  Total
+      0    Notebook Gamer  Eletrônicos           3   1500  2...
+
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\.venv\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'index': False}
+           │     └ (            Produto    Categoria  Quantidade  Venda        Data  Total
+           │       0    Notebook Gamer  Eletrônicos           3   1500  ...
+           └ <function DataFrame.to_parquet at 0x000001A93E82DA80>
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\.venv\Lib\site-packages\pandas\core\frame.py", line 3113, in to_parquet
+    return to_parquet(
+           └ <function to_parquet at 0x000001A93E948C20>
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\.venv\Lib\site-packages\pandas\io\parquet.py", line 476, in to_parquet
+    impl = get_engine(engine)
+           │          └ 'auto'
+           └ <function get_engine at 0x000001A93E948400>
+  File "C:\Users\gabriel.anjos\Documents\workspace\repos_study\jornada_dados_project\jd_09_decorators\.venv\Lib\site-packages\pandas\io\parquet.py", line 67, in get_engine
+    raise ImportError(
+
+ImportError: Unable to find a usable engine; tried using: 'pyarrow', 'fastparquet'.
+A suitable version of pyarrow or fastparquet is required for parquet support.
+Trying to import the above resulted in these errors:
+ - Missing optional dependency 'pyarrow'. pyarrow is required for parquet support. Use pip or conda to install pyarrow.
+ - Missing optional dependency 'fastparquet'. fastparquet is required for parquet support. Use pip or conda to install fastparquet.
+2025-06-01T12:55:47.035611-0300 INFO chamando função pipeline com argumentos ('data', ['parquet', 'csv']) e {}
+2025-06-01T12:55:47.037390-0300 INFO chamando função extrair_dados com argumentos ('data',) e {}
+2025-06-01T12:55:47.057767-0300 INFO função extrair_dados retornou             Produto    Categoria  Quantidade  Venda        Data
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17
+2025-06-01T12:55:47.063208-0300 INFO chamando função calcular_kpi_total_vendas com argumentos (            Produto    Categoria  Quantidade  Venda        Data
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17,) e {}
+2025-06-01T12:55:47.078235-0300 INFO função calcular_kpi_total_vendas retornou             Produto    Categoria  Quantidade  Venda        Data  Total
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15   4500
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15    300
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15    500
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16  10500
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16    300
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16    300
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17   3000
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17    420
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17    200
+2025-06-01T12:55:47.092251-0300 INFO chamando função salvar_dados com argumentos (            Produto    Categoria  Quantidade  Venda        Data  Total
+0    Notebook Gamer  Eletrônicos           3   1500  2023-01-15   4500
+1     Mouse Sem Fio  Eletrônicos          10     30  2023-01-15    300
+2  Teclado Mecânico  Eletrônicos           5    100  2023-01-15    500
+3    Notebook Gamer  Eletrônicos           7   1500  2023-01-16  10500
+4     Mouse Sem Fio  Eletrônicos          10     30  2023-01-16    300
+5  Teclado Mecânico  Eletrônicos           3    100  2023-01-16    300
+6    Notebook Gamer  Eletrônicos           2   1500  2023-01-17   3000
+7     Mouse Sem Fio  Eletrônicos          14     30  2023-01-17    420
+8  Teclado Mecânico  Eletrônicos           2    100  2023-01-17    200, ['parquet', 'csv']) e {}
+2025-06-01T12:55:47.478040-0300 INFO função salvar_dados retornou None
+2025-06-01T12:55:47.478443-0300 INFO função pipeline retornou None
